@@ -8,7 +8,7 @@ require DCOP::Amarok;
 
 our @ISA = qw(DCOP::Amarok);
 
-our $VERSION = '0.03';
+our $VERSION = '0.031';
 
 =head1 NAME
 
@@ -16,19 +16,19 @@ DCOP::Amarok::Player - Perl extension to speak to an amaroK player object via sy
 
 =head1 SYNOPSIS
 
-  use DCOP::Amarok::Player;
-  $player = DCOP::Amarok::Player->new();
-
-  $player->playPause();
-  print $player->getRandom();
+	use DCOP::Amarok::Player;
+	$player = DCOP::Amarok::Player->new();
+	
+	$player->playPause();
+	print $player->getRandom();
 
 =head1 DESCRIPTION
 
-	This module is a quick hack to get an interface between perl and Kde's DCOP,
-	since Kde3.4's perl bindings are disabled. This suite talks to 'dcop'.
-	DCOP::Amarok::Player talks directly to the player object of amaroK.
+This module is a quick hack to get an interface between perl and Kde's DCOP,
+since Kde3.4's perl bindings are disabled. This suite talks to 'dcop'.
+DCOP::Amarok::Player talks directly to the player object of amaroK.
 
-=head2 EXPORT
+=head1 EXPORT
 
 None by default.
 
@@ -52,7 +52,7 @@ sub new {
 
 =item album()
 
-	Returns the album name of currently playing song.
+Returns the album name of currently playing song.
 
 =cut
 	
@@ -64,7 +64,7 @@ sub album() {
 
 =item artist()
 
-	Returns the artist performing currently playing song.
+Returns the artist performing currently playing song.
 
 =cut
 
@@ -76,7 +76,7 @@ sub artist() {
 
 =item title()
 
-	Returns the title of currently playing song.
+Returns the title of currently playing song.
 
 =cut
 
@@ -92,7 +92,7 @@ sub title() {
 
 sub playPause() {
 	my $self = shift;
-	system("$self->{dcop}", "playPause");
+	system("$self->{dcop} playPause");
 }
 
 =item stop()
@@ -101,7 +101,7 @@ sub playPause() {
 
 sub stop() {
 	my $self = shift;
-	system("$self->{dcop}", "stop");
+	system("$self->{dcop} stop");
 }
 
 =item next()
@@ -110,7 +110,7 @@ sub stop() {
 
 sub next() {
 	my $self = shift;
-	system("$self->{dcop}", "next");
+	system("$self->{dcop} next");
 }
 
 =item prev()
@@ -119,12 +119,12 @@ sub next() {
 
 sub prev() {
 	my $self = shift;
-	system("$self->{dcop}", "prev");
+	system("$self->{dcop} prev");
 }
 
 =item getRandom()
 
-	Returns the status of the Shuffle play mode.
+Returns the status of the Shuffle play mode.
 
 =cut
 
@@ -136,7 +136,7 @@ sub getRandom(){
 
 =item toggleRandom()
 
-	Toggles the Shuffle play mode. Returns the new state.
+Toggles the Shuffle play mode. Returns the new state.
 
 =cut
 
@@ -145,10 +145,10 @@ sub toggleRandom() {
 	my $self = shift;
 	chomp( $_ = `$self->{dcop} randomModeStatus` );
 	if ( $_ =~ /true/ ) {
-		system("$self->{dcop}", "enableRandomMode 0");
+		system("$self->{dcop} enableRandomMode 0");
 	}
 	else {
-		system("$self->{dcop}", "enableRandomMode 1");
+		system("$self->{dcop} enableRandomMode 1");
 	}
 	chomp( $_ = `$self->{dcop} randomModeStatus` );
 	return $_;
@@ -160,7 +160,7 @@ sub toggleRandom() {
 
 sub mute() {
 	my $self = shift;
-	system("$self->{dcop}", "mute");
+	system("$self->{dcop} mute");
 }
 
 =item volUp()
@@ -169,7 +169,7 @@ sub mute() {
 
 sub volUp() {
 	my $self = shift;
-	system("$self->{dcop}", "volumeUp");
+	system("$self->{dcop} volumeUp");
 }
 
 =item volDn()
@@ -178,12 +178,12 @@ sub volUp() {
 
 sub volDn() {
 	my $self = shift;
-	system("$self->{dcop}", "volumeDown");
+	system("$self->{dcop} volumeDown");
 }
 
 =item vol()
 
-	Returns the volume level.
+Returns the volume level.
 
 =cut
 
@@ -195,8 +195,8 @@ sub vol() {
 
 =item status()
 
-	Returns the playing status of amaroK. 
-	0: Stopped, 1: Paused, 2: Playing
+Returns the playing status of amaroK. 
+0: Stopped, 1: Paused, 2: Playing
 
 =cut
 
@@ -208,7 +208,7 @@ sub status() {
 
 =item track()
 
-	Returns the track number of the song that is currently being played.
+Returns the track number of the song that is currently being played.
 
 =cut
 
@@ -220,7 +220,7 @@ sub track(){
 
 =item totaltime()
 
-	Returns in MM:SS the total playing time of the song that is currently being played.
+Returns in MM:SS the total playing time of the song that is currently being played.
 
 =cut
 
@@ -232,7 +232,7 @@ sub totaltime(){
 
 =item elapsed()
 
-   Returns in MM:SS the elapsed time of the song that is currently being played.
+Returns in MM:SS the elapsed time of the song that is currently being played.
 
 =cut
 		
@@ -244,7 +244,7 @@ sub elapsed(){
 
 =item totaltimesecs()
 
-   Returns in seconds the total playing time of the song that is currently being played.
+Returns in seconds the total playing time of the song that is currently being played.
 
 =cut
 		
@@ -256,7 +256,7 @@ sub totaltimesecs(){
 
 =item elapsedsecs()
 
-	Returns in seconds the elapsed time of the song that is currently being played.
+Returns in seconds the elapsed time of the song that is currently being played.
 
 =cut
 
@@ -277,29 +277,29 @@ sub _mins(){
 
 =item fwd()
 
-	Fast forwards 5 seconds the song.
+Fast forwards 5 seconds the song.
 
 =cut
 
 sub fwd(){
 	my $self = shift;
-	system("$self->{dcop}", "seekRelative +5");
+	system("$self->{dcop} seekRelative +5");
 }
 
 =item rew()
 
-	Rewinds 5 seconds the song.
+Rewinds 5 seconds the song.
 
 =cut
 
 sub rew(){
 	my $self = shift;
-	system("$self->{dcop}", "seekRelative -5");
+	system("$self->{dcop} seekRelative -5");
 }
 
 =item lyrics()
 
-	Returns the lyrics of the song that is currently being played.
+Returns the lyrics of the song that is currently being played.
 
 =cut
 
@@ -324,3 +324,4 @@ This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
 =cut
+
