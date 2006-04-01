@@ -8,7 +8,7 @@ require DCOP::Amarok;
 
 our @ISA = qw(DCOP::Amarok);
 
-our $VERSION = '0.031';
+our $VERSION = '0.035';
 
 =head1 NAME
 
