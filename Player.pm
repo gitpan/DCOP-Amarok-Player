@@ -8,7 +8,7 @@ require DCOP::Amarok;
 
 our @ISA = qw(DCOP::Amarok);
 
-our $VERSION = '0.036';
+our $VERSION = '0.037';
 
 =head1 NAME
 
@@ -18,7 +18,7 @@ DCOP::Amarok::Player - Perl extension to speak to an amaroK player object via sy
 
 	use DCOP::Amarok::Player;
 	$player = DCOP::Amarok::Player->new();
-	
+
 	$player->playPause();
 	print $player->getRandom();
 
@@ -181,7 +181,7 @@ sub mute() {
 
 =item volumeUp()
 
-=cut 
+=cut
 
 sub volumeUp() {
 	my $self = shift;
@@ -210,7 +210,7 @@ sub getVolume() {
 
 =item status()
 
-Returns the playing status of amaroK. 
+Returns the playing status of amaroK.
 0: Stopped, 1: Paused, 2: Playing
 
 =cut
@@ -872,4 +872,3 @@ This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
 =cut
-

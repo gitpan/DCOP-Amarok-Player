@@ -1,10 +1,14 @@
-# http://module-build.sourceforge.net/META-spec.html
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         DCOP-Amarok-Player
-version:      0.036
-version_from: Player.pm
-installdirs:  site
-requires:
-
-distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.30
+--- #YAML:1.0
+name:                DCOP-Amarok-Player
+version:             0.037
+abstract:            Perl extension to speak to an amaroK player object via system's DCOP.
+license:             ~
+author:              
+    - Juan C. Müller <sputnik@nonet>
+generated_by:        ExtUtils::MakeMaker version 6.42
+distribution_type:   module
+requires:     
+    DCOP::Amarok:                  0.036
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
+    version: 1.3

@@ -1,5 +1,5 @@
-DCOP/Amarok/Player version 0.01
-===============================
+DCOP/Amarok/Player
+==================
 
 This module enables an user to talk directly to an amaroK player.
 It requires a dcop system.
@@ -21,11 +21,10 @@ DEPENDENCIES
 This module depends on:
 
 	DCOP::Amarok;
-	
+
 COPYRIGHT AND LICENCE
 
 Copyright (C) 2005 Juan C. Müller
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
-
+it under the same terms as Perl itself.
